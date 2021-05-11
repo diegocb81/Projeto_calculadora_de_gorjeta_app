@@ -66,9 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
             //Calcula a gorjeta total
             double gorjeta = valorDigitado * (porcentagem/100);
+            double total = gorjeta + valorDigitado;
 
             //Exibe a gorjeta e o total
-            textGorjeta.setText("R$ " + gorjeta);
+            //textGorjeta.setText("R$ " + Math.round(gorjeta) );
+            textGorjeta.setText("R$ " + gorjeta );
+            textTotal.setText("R$ " + total );
         }
     }
 }
