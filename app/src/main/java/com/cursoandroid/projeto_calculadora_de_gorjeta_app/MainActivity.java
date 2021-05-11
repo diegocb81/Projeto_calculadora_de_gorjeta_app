@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 porcentagem = progress;
                 textPorcentagem.setText(Math.round( porcentagem ) + " %");
+                calcular();
             }
 
             @Override
@@ -47,5 +49,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void calcular(){
+
+        String valorRecuperado = editValor.getText().toString();
+        if ( valorRecuperado == null || valorRecuperado.equals("") ) {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Digite um valor primeiro!",
+                    Toast.LENGTH_LONG
+            ).show();
+        }else {
+            //Converter string para double
+            double valorDigitado = Double.parseDouble( valorRecuperado);
+
+            //Calcula a gorjeta total
+            double gorjeta = valorDigitado * (porcentagem/100);
+
+            //Exibe a gorjeta e o total
+            textGorjeta.setText("R$ " + gorjeta);
+        }
     }
 }
